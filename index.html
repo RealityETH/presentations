@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Subjectivocracy and forkable rollups</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -12,26 +12,251 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+<style type="text/css">
+/*
+    :root {
+        --r-main-font-size: 30px;
+    }
+*/
+</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
+				<section>
+                                    <h1>Subjectivocracy and forkable rollups</h1> 
+                                    <p>Edmund Edgar, reality.eth</p>
+                                </section>
+
+				<section>
+
+                                    <h3>How we secure stuff</h3>
+                                    <p> <br /></p>
+                                    <p><i>ie. </i>how we make a system the rules that the user expects it to apply</p>
+
+                                </section>
+
+				<section>
+
+                                    <h3>Securing base layers</h3>
+
+                                    <ul>
+                                     <li class="fragment">Voting <br /><span class="fragment">(susceptible to bribery, capture that exploits minorities)</span></li>
+                                     <li class="fragment">Schelling games <br /><span class="fragment">(susceptible to 51% attacks which punish honest participants)</span></li>
+                                     <li class="fragment">Subjectivocracy <br /><span class="fragment"> (chaos if regular but works great occasionally or as a backstop)</span></li>
+                                    </ul>
+
+                                </section>
+
+				<section>
+
+                                    <h3>Securing applications</h3>
+
+                                    <ul>
+                                     <li class="fragment">Voting <br />&nbsp;<span style="visibility:hidden">(susceptible to bribery, capture that exploits minorities)</span></li>
+                                     <li class="fragment">Schelling games <br />&nbsp;<span style="visibility:hidden">(susceptible to 51% attacks which punish honest participants)</span></li>
+                                     <li class="fragment"><span style="text-decoration: line-through">Subjectivocracy</span> <br />&nbsp;<span style="visibility:hidden"> (chaos if regular but works great occasionally or as a backstop)</span></li>
+                                    </ul>
+
+                                </section>
+
+                                <section>
+
+                                    <h3>The economic security bound</h3>
+
+                                    <p> <br /></p>
+<pre>
+          $$$        |   $
+    Token market cap | What you can steal
+    _________________|___________________
+</pre>
+                                </section>
+
+
+                                <section>
+
+                                    <img src="images/nospoon.jpg" />
+
+                                </section>
+
+                                <section>
+                    
+                                    <h3>Breaks composibility</h3>
+
+                                    <p> <br /></p>
+
+                                    <p>A calls B calls C</p>
+
+                                    <p class="fragment">Oracle consumer calls oracle contract</p>
+                                    
+
+<pre class="fragment">
+MyOracle v1 <- [ look up ETH/USD ]
+
+MyOracle v2
+</pre>
+
+
+                                </section>
+
+                                <section>
+                    
+                                    <h3>The old Ethereum</h3>
+
+                                    <p> <br /></p>
+
+<pre> 
+l1   contract1 contract2 contract3 contract4
+</pre>
+
+                                </section>
+
+
+                                <section>
+                    
+                                    <h3>The new Ethereum</h3>
+
+                                    <p> <br /></p>
+
+
+<pre> 
+l1   rollup1                  rollup2 
+     [root]                   [root]
+
+     -------------------      -------------------
+
+l2   contract1 contract2      contract3 contract4
+</pre>
+
+                                </section>
+
+                                <section>
+
+                                    <h3>But we can do</h3>
+
+
+                                    <p> <br /></p>
+
+<pre>
+l1   Forkable Rollup
+     [root]
+
+     --------------------
+
+l2   contract1 contract2
+</pre>
+
+                                </section>
+
+                                <section>
+
+                                    <h3>But we can do</h3>
+
+                                    <p> <br /></p>
+<pre>
+l1   [Forkable Rollup 1]                [Forkable Rollup 2]
+     [root]                             [root]
+
+     ---------------------              ----------------------
+
+l2   contract1 contract2 X              contract1 contract2 'X
+</pre>
+
+
+                                </section>
+
+                                <section>
+
+                                    <h3>Example, stage 1 (l2)</h3>
+
+                                    <p>Pet insurance contract to reality.eth:<br />Did Ed's Goat get sick?</p>
+
+                                    <ul>
+                                    <li>Alice Y:  10</li>
+                                    <li>Bob   N:  20</li>
+                                    <li>Alice Y:  40</li>
+                                    <li>Bob   N: 200</li>
+                                    <li>Alice: Arbitration (pay arbitrator 100)</li>
+                                    </ul>
+
+                                    <p>
+                                    Arbitrator rules for Bob. Bob gets Alice's bonds.
+                                    </p>
+
+                                </section>
+
+
+
+                                <section>
+
+                                    <h3>Example, stage 2 (l1)</h3>
+
+                                    <p>Alice: The arbitrator was hacked!</p>
+
+                                    <ul>
+                                    <li>Alice Y:  1000</li>
+                                    <li>Bob   N:  2000</li>
+                                    <li>Alice Y:  4000</li>
+                                    <li>Bob   N: 20000</li>
+                                    <li>Alice: Arbitration by fork</li>
+                                    </ul>
+
+                                </section>
+
+                                <section>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>Voting</td>
+                                            <td>Schelling game</td>
+                                            <td>Subjectivocracy</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>basically none</td>
+                                            <td>&lt; Market cap / 2</td>
+                                            <td>Infinity for assets issued on the ledger
+                                                <br />
+                                                &nbsp;
+                                                <br />
+                                                Market cap for bridged assets
+                                            </td>
+                                        </tr>
+
+ 
+                                    </table>
+
+                                </section>
+
+                                <section>
+                                    <h2 style="text-transform: lowercase;">reality.eth.limo/bos/</h2>
+                                    <img height="180" src="images/alex.jpg" />
+                                    <img style="margin-left:20px; margin-right:20px;" height="240" src="images/bos_qr.png" />
+                                    <img height="180" src="images/ed.jpg" />
+                                    <p>More design detail</p>
+                                    <p>Bridging assets from Layer 1</p>
+                                    <p>Stablecoins and forking</p>
+                                </section>
+
+
+                        </div>
+                            </div>
+
+                            <script src="dist/reveal.js"></script>
+                            <script src="plugin/notes/notes.js"></script>
+                            <script src="plugin/markdown/markdown.js"></script>
+                            <script src="plugin/highlight/highlight.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
+                                slideNumber: true,
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
